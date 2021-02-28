@@ -1,0 +1,41 @@
+{% extends 'base_1.html' %}
+
+<head>
+
+</head>
+
+{% block title %}About
+{% endblock title %}
+{% block body %}
+
+<div class="container mb-4 px-5">
+  <h1 class="text-center">Login</h1>
+  <form method="Post" action="/signin/">
+  {% csrf_token %}
+  
+  <div class="col-md-4">
+    <h6><label for="user_username" class="form-label">Username</label></h6>
+    <input type="text" class="form-control form-input" name="username" id="user_username" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <h6>
+      <label for="user_password">Password</label>
+      <span>(Minimum 6 characters)</span>
+    </h6>
+    <div class="input-group form-input">
+      <input autocomplete="off" class="form-control users-password-input" type="password" name="password" id="user_password" />
+      <div class="input-group-addon ml-3 mt-2" onclick="togglePassword()">
+        <i class="far fa-eye-slash password-icon" aria-hidden="true" id="toggle-icon"></i>
+      </div>
+    </div>
+  </div>
+
+    <div>
+      <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+  </form>
+</div>
+{% endblock body %}
