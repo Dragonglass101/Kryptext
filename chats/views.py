@@ -1,7 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
+from django.contrib.auth.forms import UserCreationForm
 from chats.models import Signin
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from chats.form import CreateUserForm
 
 # Create your views here.
 def index_1(request):
@@ -14,15 +17,37 @@ def aboutus(request):
     return render(request, "aboutus.html")
 
 def signin(request):
+    # fname = request.POST.get('fname')
+    # lname = request.POST.get('lname')
+    # username = request.POST.get('username')
+    # password = request.POST.get('password')
+    # signin = Signin(fname=fname, lname=lname, username=username, password=password, date=datetime.today())
+    # signin.save()
+    # messages.success(request, 'you have signed up successfully')
+    
+    form = CreateUserForm()
     if request.method == "POST":
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # user = form.cleaned_data.get('username')
+            messages.success(request, 'Your account has been created')
+            return redirect('login')
+            
+    context = {'form':form}
+    return render(request, "signin.html", context)
+
+def loginpage(request):
+    if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        signin = Signin(fname=fname, lname=lname, username=username, password=password, date=datetime.today())
-        signin.save()
-        messages.success(request, 'you have signed up successfully')
-    return render(request, "signin.html")
 
-def login(request):
-    return render(request, "login.html")
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('chats')
+        else:
+            messages.info(request, 'Username or password is incorrect')
+    context = {}
+    return render(request, "login.html", context)
