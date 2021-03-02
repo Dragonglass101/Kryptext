@@ -46,8 +46,14 @@ def loginpage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('chats')
+            return redirect('home')
         else:
             messages.info(request, 'Username or password is incorrect')
     context = {}
     return render(request, "login.html", context)
+
+def index_2(request):
+    return render(request, 'index_2.html')
+
+def addfriend(request):
+    return render(request, 'addfriend.html')

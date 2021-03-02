@@ -11,5 +11,7 @@ urlpatterns = [
     path("description/", views.description, name='description'),
     path("aboutus/", views.aboutus, name='about'),
     path("signin/", views.signin, name='signin'),
-    path("login/", views.loginpage, name='login')
+    path("login/", views.loginpage, name='login'),
+    path("after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/", views.index_2, name='home'),
+    path("after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/addfriend/", views.addfriend, name='addfriend')
 ]
