@@ -2,36 +2,43 @@
 {% block head %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-.row {
-  display: flex;
-}
+  .row {
+    display: flex;
+  }
 
-/* Create two equal columns that sits next to each other */
-.column {
-  flex: 50%;
-  padding: 20px;
-  height: 1000px; /* Should be removed. Only for demonstration */
-}
+  /* Create two equal columns that sits next to each other */
+  .column {
+    flex: 50%;
+    padding: 20px;
+    height: 1000px;
+    /* Should be removed. Only for demonstration */
+  }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 100%;
+  }
+  table .btn{
+    vertical-align: top;
+    horizontal-align: left;
+  }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 6px;
-}
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 6px;
+  }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
 </style>
 {% endblock head %}
 
@@ -39,44 +46,47 @@ tr:nth-child(even) {
 
 {% block body %}
 <div class="container-fluid px-0 py-0">
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://source.unsplash.com/1000x300/?dog" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Kryptext</h5>
+          <p>Welcome to our website</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/1000x300/?parrot" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>chat freely</h5>
+          <p>We ensure full privacy</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/1000x300/?tiger" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Made By-</h5>
+          <p>~Donald Trump</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://source.unsplash.com/1000x300/?dog" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Kryptext</h5>
-        <p>Welcome to our website</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="https://source.unsplash.com/1000x300/?parrot" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>chat freely</h5>
-        <p>We ensure full privacy</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="https://source.unsplash.com/1600x400/?tiger" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Made By-</h5>
-        <p>~Donald Trump</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 </div>
 <div class="row">
   <div class="column" style="background-color:#fff;">
@@ -85,43 +95,22 @@ tr:nth-child(even) {
   </div>
   <div class="column" style="background-color:#fff;">
     <h3 class="text-center">Friends</h3>
+
     <table>
-    <tr>
-      <th>Name</th>
-      <th class="text-center">Compose</th>
-      <th>Chat History</th>
-    </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td class="text-center">+</td>
-      <td type="button"  onclick="location.href='/signin';">View</td>
-    </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td class="text-center">+</td>
-      <td type="button"  onclick="location.href='/signin';">View</td>
-    </tr>
-    <tr>
-      <td>Ernst Handel</td>
-      <td class="text-center">+</td>
-      <td type="button"  onclick="location.href='/signin';">View</td>
-    </tr>
-    <tr>
-      <td>Island Trading</td>
-      <td class="text-center">+</td>
-      <td type="button"  onclick="location.href='/signin';">View</td>
-    </tr>
-    <tr>
-      <td>Laughing Bacchus Winecellars</td>
-      <td class="text-center">+</td>
-      <td type="button"  onclick="location.href='/signin';">View</td>
-    </tr>
-    <tr>
-      <td>Magazzini Alimentari Riuniti</td>
-      <td class="text-center">+</td>
-      <td type="button"  onclick="location.href='/signin';">View</td>
-    </tr>
-</table>
+      <script language="javascript" type="text/javascript">
+        var names = {{ users|safe }}
+        document.write("<tr><th>Name</td><th type='text' class='text-center'>Compose</td><th type='text'>Chat History</td></tr>")
+        for (var a = 0; a <names.length; a++)
+        {
+          document.write("<tr>");
+          document.write("<td>" + names[a] + "</td>");
+          document.write("<td class='text-center'>" + "+" + "</td>");
+          document.write("<td  type='button' onclick='location.href='#';'>" + "view" + "</td>");
+          document.write("</tr>");
+        }
+      </script>
+    </table>
   </div>
 </div>
+
 {% endblock body %}

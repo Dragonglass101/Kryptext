@@ -1,5 +1,5 @@
 from django.contrib import admin
-from chats.models import Signin
+from chats.models import Friend
 
 # Register your models here.
-admin.site.register(Signin)
+admin.site.register(Friend)
