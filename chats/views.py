@@ -17,7 +17,7 @@ def description(request):
     return render(request, "description.html")
 
 def aboutus(request):
-    return render(request, "aboutus.html")
+    return HttpResponse("this is the about page")
 
 def signin(request):
     # fname = request.POST.get('fname')
@@ -66,13 +66,8 @@ def index_2(request):
     context = {"users":lst}
     return render(request, 'index_2.html', context)
 
-def addfriend(request):
-    user_all = User.objects.values()
-    lst = []
+def compose(request):
+    return render(request, "compose.html")
 
-    i = 1
-    while(i<len(user_all)):
-        lst.append(user_all[i]['username'])
-        i += 1
-    context = {"users":lst}
-    return render(request, 'addfriend.html', context)
+def chat_history(request):
+    return HttpResponse("this is the chat history page")

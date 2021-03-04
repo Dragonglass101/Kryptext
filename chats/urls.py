@@ -13,5 +13,6 @@ urlpatterns = [
     path("signin/", views.signin, name='signin'),
     path("login/", views.loginpage, name='login'),
     path("after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/", views.index_2, name='home'),
-    path("after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/addfriend/", views.addfriend, name='addfriend')
+    path("after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/compose", views.compose, name='compose'),
+    path("after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/chat_history", views.chat_history, name='chat_history')
 ]

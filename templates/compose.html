@@ -1,0 +1,14 @@
+{% extends 'base_2.html' %}
+
+{% block body %}
+<div class="input-group mb-3 mx-5 my-5">
+	<div class="input-group-append"></div>
+	<input class="text"  placeholder="Friend name" name="friend_name" id="friend_name"/>
+</div>
+<div class="input-group mx-5 my-3">
+    <div class="input-group-append"></div>
+    <textarea class="text" rows="10" cols="100" placeholder="message..." name="message" id="message"></textarea>
+</div>
+<input class="btn btn-primary mx-5" type="submit" value="Send">
+<script>
+{% endblock body %}
