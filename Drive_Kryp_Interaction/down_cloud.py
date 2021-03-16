@@ -42,7 +42,7 @@ def Downloader(file,folder):
             fileID=fil['id']
             break
     file1 = drive.CreateFile({'id': fileID})
-    file1.GetContentFile(file)
+    file1.GetContentFile(r"./txtfiles/"+file)
 def Download_pukey(folder):
     Downloader('public_txt.txt',folder)
 def Download_msg():
@@ -79,7 +79,7 @@ def Download_msg():
     # Save the current credentials to a file
     gauth.SaveCredentialsFile("mycreds.txt")
     drive = GoogleDrive(gauth)
-    with open('sender.txt','r') as u:
+    with open(r'./txtfiles/sender.txt','r') as u:
         username=u.read()
     folderlist=drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
     x=0
@@ -96,6 +96,6 @@ def Download_msg():
     for fil in filelist:
         fileID=fil['id']
         file1 = drive.CreateFile({'id': fileID})
-        file1.GetContentFile(fil['title'])
+        file1.GetContentFile(r'./txtfiles/'+fil['title'])
         file1.Delete()
-        crypt_implement.Krypt().decrypt_message(fil['title'])
+        crypt_implement.Krypt().decrypt_message(r'./txtfiles/'+fil['title'])

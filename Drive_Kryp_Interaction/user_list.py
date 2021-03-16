@@ -31,7 +31,7 @@ def user_add():
     # Save the current credentials to a file
     gauth.SaveCredentialsFile("mycreds.txt")
     drive = GoogleDrive(gauth)
-    with open('sender.txt','r') as u:
+    with open(r'./txtfiles/sender.txt','r') as u:
         username=u.read()
     fileList = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
     x=0
@@ -46,7 +46,7 @@ def user_add():
         foldID=folder1['id']       
     file1=drive.CreateFile({'title': username+'.txt', 'parents': [{'id': foldID}]})
     file1.Upload()
-    import crypt_implement
+    from Drive_Kryp_Interaction import crypt_implement
     crypt_implement.Krypt().generate()
 def user_find():
     from pydrive.auth import GoogleAuth
@@ -81,7 +81,7 @@ def user_find():
     # Save the current credentials to a file
     gauth.SaveCredentialsFile("mycreds.txt")
     drive = GoogleDrive(gauth)
-    with open('recipient.txt','r') as rec:
+    with open(r'./txtfiles/recipient.txt','r') as rec:
         username=rec.readline()
     folderList = drive.ListFile({'q': "'root' in parents and trashed=false"}).GetList()
     for fold in folderList:
@@ -96,9 +96,10 @@ def user_find():
             y=1
             break
     if y==1:
-        import crypt_implement
+        from Drive_Kryp_Interaction import crypt_implement
         crypt_implement.Krypt().encrypt_message()
     elif(y==0):
-        os.remove('message.txt')
-        os.remove('recipient.txt')
+        import os
+        os.remove(r'./txtfiles/message.txt')
+        os.remove(r'./txtfiles/recipient.txt')
         return False

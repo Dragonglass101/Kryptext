@@ -45,5 +45,6 @@ def Uploader(file,folder):
         folder1.Upload()
         folderID=folder1['id']
     file1=drive.CreateFile({'parents': [{'id': folderID}]})
-    file1.SetContentFile(file)
+    file1.SetContentFile(r"./txtfiles/"+file)
+    file1['title']=file
     file1.Upload()

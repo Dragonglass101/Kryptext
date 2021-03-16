@@ -7,8 +7,8 @@ class Krypt:
     def __init__(self):
         pass
     def generate(self):
-        import up_cloud
-        with open('sender.txt','r') as u:
+        from Drive_Kryp_Interaction import up_cloud
+        with open(r'./txtfiles/sender.txt','r') as u:
             person=u.read()
         #Generating private key (RsaKey object) of key length of 1024 bits
         private_key = RSA.generate(1024)
@@ -18,46 +18,46 @@ class Krypt:
         private_txt = private_key.export_key().decode()
         public_txt = public_key.export_key().decode()
         #Writing down the private and public keys to '.txt' files
-        with open('private_txt.txt','w') as pr:
+        with open(r'./txtfiles/private_txt.txt','w') as pr:
             pr.write(private_txt)
-        with open('public_txt.txt','w') as pu:
+        with open(r'./txtfiles/public_txt.txt','w') as pu:
             pu.write(public_txt)
         up_cloud.Uploader("public_txt.txt",(person+'_Pu_key')) #Using the Uploader()
-        os.remove("public_txt.txt")
+        os.remove(r"./txtfiles/public_txt.txt")
     def encrypt_message(self):
-        import up_cloud
-        with open('sender.txt','r') as u:
+        from Drive_Kryp_Interaction import up_cloud
+        with open(r'./txtfiles/sender.txt','r') as u:
             sender=u.readline()
-        with open('message.txt','r') as mes: #Check if message can be sent like:Sender : Recipient : <The message>
+        with open(r'./txtfiles/message.txt','r') as mes: #Check if message can be sent like:Sender : Recipient : <The message>
             message=mes.readline()
-        with open('recipient.txt','r') as rec:
+        with open(r'./txtfiles/recipient.txt','r') as rec:
             recipient=rec.readline()
         now = datetime.now() # datetime object containing current date and time
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # format of date and time is dd/mm/YY H:M:S
         Text=sender+' : '+message+'%%$%#*#'+dt_string
-        os.remove("message.txt")
-        os.remove('recipient.txt')
+        os.remove(r"./txtfiles/message.txt")
+        os.remove(r'./txtfiles/recipient.txt')
         #compare(lst[0]) #Using the compare(). Here I pass the Sender's username to the compare function.
         #Downloading the public key and converting it to the RsaKey object
-        import down_cloud
+        from Drive_Kryp_Interaction import down_cloud
         down_cloud.Download_pukey((recipient+"_Pu_key")) #Using the Download_pukey()
-        with open('public_txt.txt','r') as putxt:
+        with open(r'./txtfiles/public_txt.txt','r') as putxt:
             pu_key = RSA.import_key(putxt.read())
-        os.remove("public_txt.txt")
+        os.remove(r"./txtfiles/public_txt.txt")
         #Instantiating PKCS1_OAEP object with the public key for encryption
         cipher = PKCS1_OAEP.new(key=pu_key)
         #Encrypting the message with the PKCS1_OAEP object
         cipher_text = cipher.encrypt(Text.encode())
         fname11="encrypted_"+(dt_string.split(" ")[1])+".txt"
-        with open(fname11,'wb') as enc:
+        with open(r"./txtfiles/"+fname11,'wb') as enc:
             enc.write(cipher_text)
         up_cloud.Uploader(fname11,(recipient+"_Received")) #Using the Uploader()
-        os.remove(fname11)
+        os.remove(r"./txtfiles/"+fname11)
         log_message="Sent to "+recipient+" on "+dt_string+" =>  "+message+"\n"
         with open('logs.txt','a') as l:
             l.write(log_message)
         #IF NEEDED ADD THIS LINE: sort(recipient)
-        import display
+        from Drive_Kryp_Interaction import display
         display.distribute()
     def split_dt_string(self,dt_string):
         dt_lst1=dt_string.split(" ")
@@ -122,7 +122,7 @@ class Krypt:
         with open(fname1,'rb') as enc1:
             encrypted_message=enc1.read()
         os.remove(fname1)
-        with open('private_txt.txt','r') as prtxt:
+        with open(r'./txtfiles/private_txt.txt','r') as prtxt:
             pr_key = RSA.import_key(prtxt.read())
         #Instantiating PKCS1_OAEP object with the private key for decryption
         decrypt = PKCS1_OAEP.new(key=pr_key)
@@ -143,5 +143,5 @@ class Krypt:
         with open('logs.txt','a') as lg:
             lg.write(log_message1)
         #IF NEEDED ADD THIS LINE: sort(recipient)
-        import display
+        from Drive_Kryp_Interaction import display
         display.distribute()

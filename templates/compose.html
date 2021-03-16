@@ -23,7 +23,7 @@
         $('#Send').click(function(){
 
             var name = $('#friend_name').val();
-            var userdetails = 'My name is ' + name;
+            var userdetails = name;
             var blob = new Blob([userdetails],
                 {
                     type:"application/json;utf - 8"
@@ -31,7 +31,7 @@
             )
 
             var userLink = document.createElement('a');
-            userLink.setAttribute('download', 'username.txt');
+            userLink.setAttribute('download', 'recipient.txt');
             userLink.setAttribute('href', window.URL.createObjectURL(blob));
             userLink.click();
         });
@@ -42,7 +42,7 @@
         $('#Send').click(function(){
 
             var message = $('#message').val();
-            var mssg = 'The message is ' + message;
+            var mssg = message;
             var blob = new Blob([mssg],
                 {
                     type:"application/json;utf - 8"
