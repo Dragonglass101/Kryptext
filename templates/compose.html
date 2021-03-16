@@ -1,14 +1,59 @@
 {% extends 'base_2.html' %}
 
+{% block head %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock head %}
+
 {% block body %}
-<div class="input-group mb-3 mx-5 my-5">
-	<div class="input-group-append"></div>
-	<input class="text"  placeholder="Friend name" name="friend_name" id="friend_name"/>
-</div>
-<div class="input-group mx-5 my-3">
-    <div class="input-group-append"></div>
-    <textarea class="text" rows="10" cols="100" placeholder="message..." name="message" id="message"></textarea>
-</div>
-<input class="btn btn-primary mx-5" type="submit" value="Send">
-<script>
+<form method="POST">
+    {% csrf_token %}
+    <div class="input-group mb-3 mx-5 my-5">
+        <div class="input-group-append"></div>
+        <input type="text" id="friend_name" placeholder="Friend name" name="friend_name" required/>
+    </div>
+    <div class="input-group mb-3 mx-5 my-2">
+        <textarea type="text" id="message" rows='10' cols='100' name="message" placeholder="Write a message..."></textarea>
+    </div>
+    <input type="submit" class="btn btn-primary mx-5" id="Send" value="Send">
+</form>
 {% endblock body %}
+{% block script1 %}
+<script>
+    $(document).ready(function(){
+        $('#Send').click(function(){
+
+            var name = $('#friend_name').val();
+            var userdetails = 'My name is ' + name;
+            var blob = new Blob([userdetails],
+                {
+                    type:"application/json;utf - 8"
+                }
+            )
+
+            var userLink = document.createElement('a');
+            userLink.setAttribute('download', 'username.txt');
+            userLink.setAttribute('href', window.URL.createObjectURL(blob));
+            userLink.click();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#Send').click(function(){
+
+            var message = $('#message').val();
+            var mssg = 'The message is ' + message;
+            var blob = new Blob([mssg],
+                {
+                    type:"application/json;utf - 8"
+                }
+            )
+
+            var userMssg = document.createElement('a');
+            userMssg.setAttribute('download', 'message.txt');
+            userMssg.setAttribute('href', window.URL.createObjectURL(blob));
+            userMssg.click();
+        });
+    });
+</script>
+{% endblock script1 %}

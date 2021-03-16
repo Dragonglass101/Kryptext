@@ -67,7 +67,12 @@ def index_2(request):
     return render(request, 'index_2.html', context)
 
 def compose(request):
+    if request.method == "POST":
+        messages.success(request, "Your message has been sent")
     return render(request, "compose.html")
 
 def chat_history(request):
-    return HttpResponse("this is the chat history page")
+    return render(request, 'chat_history.html')
+
+def test(request):
+    return render(request, 'test.html')
