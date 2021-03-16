@@ -67,7 +67,7 @@ def index_2(request):
     return render(request, 'index_2.html', context)
 
 def compose(request):
-    if request.method == "POST":
+    if request.method == "POST" and 'send' in request.POST:
         messages.success(request, "Your message has been sent")
     return render(request, "compose.html")
 
