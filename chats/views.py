@@ -20,14 +20,6 @@ def aboutus(request):
     return HttpResponse("this is the about page")
 
 def signin(request):
-    # fname = request.POST.get('fname')
-    # lname = request.POST.get('lname')
-    # username = request.POST.get('username')
-    # password = request.POST.get('password')
-    # signin = Signin(fname=fname, lname=lname, username=username, password=password, date=datetime.today())
-    # signin.save()
-    # messages.success(request, 'you have signed up successfully')
-    
     form = CreateUserForm()
     if request.method == "POST":
         form = CreateUserForm(request.POST)
@@ -69,6 +61,14 @@ def index_2(request):
 def compose(request):
     if request.method == "POST" and 'send' in request.POST:
         messages.success(request, "Your message has been sent")
+        
+        from Drive_Kryp_Interaction import butt_send
+        # import sys
+        # sys.path.insert(0, '../Drive_Kryp_Interaction')
+        butt_send.send_run()
+
+        return render(request, 'compose.html')
+
     return render(request, "compose.html")
 
 def chat_history(request):
