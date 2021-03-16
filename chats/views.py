@@ -60,13 +60,14 @@ def index_2(request):
 
 def compose(request):
     if request.method == "POST" and 'send' in request.POST:
-        
+        messages.success(request, "Your message has been sent")
         from Drive_Kryp_Interaction import butt_send
-        a = butt_send.send_run()
-        if a:
-            messages.success(request, "Your message has been sent")
-        else:
-            messages.success(request, "This user does not exist")
+        
+        butt_send.send_run()
+        
+        # import sys
+        # sys.path.insert(0, '../Drive_Kryp_Interaction')
+        
 
         return render(request, 'compose.html')
 
