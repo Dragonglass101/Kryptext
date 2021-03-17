@@ -64,16 +64,19 @@ def compose(request):
         from Drive_Kryp_Interaction import butt_send
         
         butt_send.send_run()
-        
-        # import sys
-        # sys.path.insert(0, '../Drive_Kryp_Interaction')
-        
 
         return render(request, 'compose.html')
 
     return render(request, "compose.html")
 
 def chat_history(request):
+    if request.method == "POST" and 'refresh' in request.POST:
+        from Drive_Kryp_Interaction import butt_refresh
+        
+        butt_refresh.refresh_run()
+
+        return render(request, 'chat_history.html')
+
     return render(request, 'chat_history.html')
 
 def test(request):

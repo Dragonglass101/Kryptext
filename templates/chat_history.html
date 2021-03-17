@@ -1,1 +1,42 @@
 {% extends 'base_2.html' %}
+{% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock head %}
+{% block body %}
+    <div>
+        <div>
+            <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary mx-5 my-3" style="font-size:24px" name="refresh">Refresh <i class="fa fa-refresh fa-spin" style="font-size:24px"></i></button>
+            <b>NOTE: please click on refresh before viewing your messages!</b>
+            </form>
+        </div>
+        <br><input class="btn btn-secondary mx-5" type="file" id="helloman" placeholder="mycreds.txt"><br>
+        <textarea class="mx-5 my-2" cols="100" rows="15" placeholder="Your message will be shown here"></textarea>
+    </div>
+    <script language="javascript" type="text/javascript">
+    let input = document.getElementById('helloman');
+    let textarea = document.querySelector('textarea');
+
+    input.addEventListener('change', () => {
+        let files = input.files;
+
+        if (files.length == 0) return;
+
+        const file = files[0];
+
+        let reader = new FileReader();
+
+        reader.onload = (e) => {
+            const file = e.target.result;
+            const lines = file.split(/\r\n|\n/);
+            textarea.value = lines.join('\n');
+        };
+
+        reader.onerror = (e) => alert(e.target.error.name);
+
+        reader.readAsText(file);
+    })
+    </script>
+{% endblock body %}
