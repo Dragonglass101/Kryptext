@@ -41,7 +41,7 @@ def loginpage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('/after@login**!home%$page;alsdvjioanerg239872938kjrhgowergw/')
         else:
             messages.info(request, 'Username or password is incorrect')
     context = {}
