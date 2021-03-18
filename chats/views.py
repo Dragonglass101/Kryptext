@@ -60,13 +60,9 @@ def loginpage(request):
 
 def index_2(request):
     user_all = User.objects.values()
-    lst = []
 
-    i = 1
-    while(i<len(user_all)):
-        lst.append(user_all[i]['username'])
-        i += 1
-    context = {"users":lst}
+    name_of_user = user_all[1]['username']
+    context = {"users":name_of_user}
     return render(request, 'index_2.html', context)
 
 def compose(request):
@@ -90,6 +86,3 @@ def chat_history(request):
         return render(request, 'chat_history.html')
 
     return render(request, 'chat_history.html')
-
-def test(request):
-    return render(request, 'test.html')

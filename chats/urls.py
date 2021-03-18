@@ -8,7 +8,6 @@ admin.site.index_title = "Welcome to Kryptext :)"
 
 urlpatterns = [
     path("", views.index_1, name='home_1'),
-    path("test/", views.test, name='test'),
     path("description/", views.description, name='description'),
     path("aboutus/", views.aboutus, name='about'),
     path("signin/", views.signin, name='signin'),
