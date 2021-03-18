@@ -97,7 +97,7 @@ def user_find():
             break
     if y==1:
         from Drive_Kryp_Interaction import crypt_implement
-        crypt_implement.Krypt().encrypt_message()
+        return(crypt_implement.Krypt().encrypt_message())
     elif(y==0):
         import os
         os.remove(r'./txtfiles/message.txt')

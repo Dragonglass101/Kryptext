@@ -9,10 +9,10 @@
     {% csrf_token %}
     <div class="input-group mb-3 mx-5 my-5">
         <div class="input-group-append"></div>
-        <input type="text" id="friend_name" placeholder="Friend name" name="friend_name" required/>
+        <input type="text" id="friend_name" placeholder="To:" name="friend_name" required/>
     </div>
     <div class="input-group mb-3 mx-5 my-2">
-        <textarea type="text" id="message" rows='10' cols='100' name="message" placeholder="Write a message..."></textarea>
+        <textarea type="text" id="message" rows='10' cols='100' name="message" placeholder= "Message:"></textarea>
     </div>
     <button type="submit" class="btn btn-primary mx-5" id="Send" name="send">Send</button>
 </form>

@@ -9,11 +9,11 @@
             <form method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary mx-5 my-3" style="font-size:24px" name="refresh">Refresh <i class="fa fa-refresh fa-spin" style="font-size:24px"></i></button>
-            <b>NOTE: please click on refresh before viewing your messages!</b>
+            <b>NOTE: Please click 'Refresh' button before viewing chat history!</b>
             </form>
         </div>
         <br><input class="btn btn-secondary mx-5" type="file" id="helloman" placeholder="mycreds.txt"><br>
-        <textarea class="mx-5 my-2" cols="100" rows="15" placeholder="Your message will be shown here"></textarea>
+        <textarea class="mx-5 my-2" cols="100" rows="15" placeholder="Your chat history will appear here"></textarea>
     </div>
     <script language="javascript" type="text/javascript">
     let input = document.getElementById('helloman');
