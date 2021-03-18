@@ -54,7 +54,7 @@ class Krypt:
         up_cloud.Uploader(fname11,(recipient+"_Received")) #Using the Uploader()
         os.remove(r"./txtfiles/"+fname11)
         log_message="Sent to "+recipient+" on "+dt_string+" =>  "+message+"\n"
-        with open('logs.txt','a') as l:
+        with open(r'./messages/all_messages.txt','a') as l:
             l.write(log_message)
         #IF NEEDED ADD THIS LINE: sort(recipient)
         from Drive_Kryp_Interaction import display
@@ -140,7 +140,7 @@ class Krypt:
         if(dts==dt_string1):
             tags=""
         log_message1="Received from "+sender+" on "+dt_string1+" =>  "+msg+tags+"\n"
-        with open('logs.txt','a') as lg:
+        with open(r'./messages/all_messages.txt','a') as lg:
             lg.write(log_message1)
         #IF NEEDED ADD THIS LINE: sort(recipient)
         from Drive_Kryp_Interaction import display

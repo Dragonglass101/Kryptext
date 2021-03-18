@@ -17,7 +17,7 @@ def description(request):
     return render(request, "description.html")
 
 def aboutus(request):
-    return HttpResponse("this is the about page")
+    return render(request, 'aboutus.html')
 
 def signin(request):
     form = CreateUserForm()
@@ -25,8 +25,19 @@ def signin(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            # user = form.cleaned_data.get('username')
+            #giving an alert message
             messages.success(request, 'Your account has been created!')
+
+            #creating sender.txt file
+            user_all = User.objects.values()
+            username = user_all[1]['username']
+            with open(r'./txtfiles/sender.txt','w') as s:
+                s.write(username)
+
+            #calling function to make public and private keys
+            from Drive_Kryp_Interaction import butt_signup
+            butt_signup.signup_run()
+
             return redirect('login')
             
     context = {'form':form}
@@ -63,9 +74,11 @@ def compose(request):
         messages.success(request, "Your message has been sent")
         from Drive_Kryp_Interaction import butt_send
         
-        butt_send.send_run()
-
-        return render(request, 'compose.html')
+        a = butt_send.send_run()
+        if a:
+            messages.success(request, "Your message has been sent")
+        else:
+            messages.success(request, "User not found!")
 
     return render(request, "compose.html")
 
