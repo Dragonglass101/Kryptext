@@ -142,6 +142,5 @@ class Krypt:
         log_message1="Received from "+sender+" on "+dt_string1+" =>  "+msg+tags+"\n"    
         with open(r'./messages/all_messages.txt','a') as lg:
             lg.write(log_message1)  #Storing the decrypted message locally in all_messages.txt
-        #IF NEEDED ADD THIS LINE: sort(recipient)
         from Drive_Kryp_Interaction import display
         display.distribute()    #Distributing messages into individual logs
