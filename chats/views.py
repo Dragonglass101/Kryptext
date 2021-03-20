@@ -1,12 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.forms import UserCreationForm
-from chats.models import Friend
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from chats.form import CreateUserForm
 from django.contrib.auth.models import User
-from datetime import datetime
-import json
 
 
 # Create your views here.

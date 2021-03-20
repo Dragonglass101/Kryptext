@@ -11,7 +11,7 @@ class Krypt:
         with open(r'./txtfiles/sender.txt','r') as u:
             person=u.read()
         #Generating private key (RsaKey object) of key length of 2048 bits
-        private_key = RSA.generate(2048)
+        private_key = RSA.generate(4096)
         #Generating the public key (RsaKey object) from the private key
         public_key = private_key.publickey()
         #Converting the RsaKey objects to string

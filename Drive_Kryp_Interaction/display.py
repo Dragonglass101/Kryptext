@@ -19,7 +19,7 @@ def distribute(): #Used to distribute the messages in all_messages.txt into indi
         for msg in lg: 
             fname=msg.split(" ")[2]+"_messages.txt"
             with open(r'./messages/'+fname,'a') as indlg:
-                indlg.write(msg)
+                indlg.write(msg+'\n')
 
 if(__name__ == "__main__"):
     distribute()
